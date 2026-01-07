@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>calc.html</title>
+    
+
+  </head>
+    
+  <body>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+<div class="min-h-screen bg-gray-900 flex flex-col items-center justify-center p-4">
+  <a href="index.html" class="mb-6 text-gray-400 hover:text-white transition-colors">
+    ← 메인 화면으로 돌아가기
+  </a>
+  
+  <div class="bg-gray-800 p-6 rounded-3xl shadow-2xl w-80 border border-gray-700">
+    <h2 class="text-white text-center mb-4 font-bold text-xl">JS Calculator</h2>
+    
+    <input id="result" type="text" readonly 
+      class="w-full text-right text-3xl p-4 mb-6 bg-gray-900 text-green-400 rounded-2xl border-none focus:outline-none font-mono" 
+      placeholder="0">
+    
+    <div class="grid grid-cols-4 gap-3">
+      <button onclick="clearRes()" class="col-span-2 p-4 bg-red-500/20 text-red-400 rounded-2xl hover:bg-red-500/30 font-bold transition">C</button>
+      <button onclick="add('/')" class="p-4 bg-orange-500/20 text-orange-400 rounded-2xl hover:bg-orange-500/30 font-bold">÷</button>
+      <button onclick="add('*')" class="p-4 bg-orange-500/20 text-orange-400 rounded-2xl hover:bg-orange-500/30 font-bold">×</button>
+      
+      <button onclick="add('7')" class="p-4 bg-gray-700 text-white rounded-2xl hover:bg-gray-600 font-bold">7</button>
+      <button onclick="add('8')" class="p-4 bg-gray-700 text-white rounded-2xl hover:bg-gray-600 font-bold">8</button>
+      <button onclick="add('9')" class="p-4 bg-gray-700 text-white rounded-2xl hover:bg-gray-600 font-bold">9</button>
+      <button onclick="add('-')" class="p-4 bg-orange-500/20 text-orange-400 rounded-2xl hover:bg-orange-500/30 font-bold">-</button>
+      
+      <button onclick="add('4')" class="p-4 bg-gray-700 text-white rounded-2xl hover:bg-gray-600 font-bold">4</button>
+      <button onclick="add('5')" class="p-4 bg-gray-700 text-white rounded-2xl hover:bg-gray-600 font-bold">5</button>
+      <button onclick="add('6')" class="p-4 bg-gray-700 text-white rounded-2xl hover:bg-gray-600 font-bold">6</button>
+      <button onclick="add('+')" class="p-4 bg-orange-500/20 text-orange-400 rounded-2xl hover:bg-orange-500/30 font-bold">+</button>
+      
+      <button onclick="add('1')" class="p-4 bg-gray-700 text-white rounded-2xl hover:bg-gray-600 font-bold">1</button>
+      <button onclick="add('2')" class="p-4 bg-gray-700 text-white rounded-2xl hover:bg-gray-600 font-bold">2</button>
+      <button onclick="add('3')" class="p-4 bg-gray-700 text-white rounded-2xl hover:bg-gray-600 font-bold">3</button>
+      <button onclick="solve()" class="row-span-2 p-4 bg-blue-600 text-white rounded-2xl hover:bg-blue-500 font-bold shadow-lg shadow-blue-500/20">=</button>
+      
+      <button onclick="add('0')" class="col-span-2 p-4 bg-gray-700 text-white rounded-2xl hover:bg-gray-600 font-bold">0</button>
+      <button onclick="add('.')" class="p-4 bg-gray-700 text-white rounded-2xl hover:bg-gray-600 font-bold">.</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const resultField = document.getElementById('result');
+
+  // 숫자가 기호 추가
+  function add(val) {
+    resultField.value += val;
+  }
+
+  // 초기화
+  function clearRes() {
+    resultField.value = "";
+  }
+
+  // 결과 계산 (eval 함수 사용)
+  function solve() {
+    try {
+      // 입력값이 없을 때 =을 누르면 무시
+      if (resultField.value === "") return;
+      resultField.value = eval(resultField.value);
+    } catch (e) {
+      resultField.value = "Error";
+      setTimeout(clearRes, 1500); // 에러 시 1.5초 뒤 자동 초기화
+    }
+  }
+</script>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>
